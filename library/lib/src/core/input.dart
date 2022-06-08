@@ -40,7 +40,7 @@ class HaveResourceImageInput extends ImageInput {
   /// [onRelease] is the function to release the resources.
   ///
   const HaveResourceImageInput({
-    required this.innerInput,
+    this.innerInput,
     this.onRelease,
   });
 
@@ -48,7 +48,7 @@ class HaveResourceImageInput extends ImageInput {
   final ImageInput innerInput;
 
   /// The function to release the resources.
-  final Future<void> Function()? onRelease;
+  final Future<void> Function() onRelease;
 
   /// Release the resources.
   Future<void> release() async {

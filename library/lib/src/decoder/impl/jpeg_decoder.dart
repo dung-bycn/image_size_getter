@@ -17,7 +17,7 @@ class JpegDecoder extends BaseDecoder with SimpleTypeValidator {
   @override
   Size getSize(ImageInput input) {
     int start = 2;
-    BlockEntity? block;
+    BlockEntity block;
     var orientation = 1;
 
     while (true) {
@@ -59,7 +59,7 @@ class JpegDecoder extends BaseDecoder with SimpleTypeValidator {
   @override
   Future<Size> getSizeAsync(AsyncImageInput input) async {
     int start = 2;
-    BlockEntity? block;
+    BlockEntity block;
     var orientation = 1;
 
     while (true) {
@@ -91,7 +91,7 @@ class JpegDecoder extends BaseDecoder with SimpleTypeValidator {
     }
   }
 
-  BlockEntity? _getBlockSync(ImageInput input, int blockStart) {
+  BlockEntity _getBlockSync(ImageInput input, int blockStart) {
     try {
       final blockInfoList = input.getRange(blockStart, blockStart + 4);
 
@@ -107,7 +107,7 @@ class JpegDecoder extends BaseDecoder with SimpleTypeValidator {
     }
   }
 
-  Future<BlockEntity?> _getBlockAsync(
+  Future<BlockEntity> _getBlockAsync(
       AsyncImageInput input, int blockStart) async {
     try {
       final blockInfoList = await input.getRange(blockStart, blockStart + 4);
@@ -140,7 +140,7 @@ class JpegDecoder extends BaseDecoder with SimpleTypeValidator {
   @override
   SimpleFileHeaderAndFooter get simpleFileHeaderAndFooter => _JpegInfo();
 
-  int? _getOrientation(List<int> app1blockData) {
+  int _getOrientation(List<int> app1blockData) {
     // About EXIF, See: https://www.media.mit.edu/pia/Research/deepview/exif.html#orientation
 
     // app1 block buffer:
